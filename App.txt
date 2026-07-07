@@ -1,0 +1,336 @@
+App.java:
+public class App {
+
+    public static void main(String[] args) {
+
+        System.out.println("=================================");
+        System.out.println("Java Maven CI/CD Pipeline");
+        System.out.println("Build Successful");
+        System.out.println("=================================");
+
+    }
+
+}
+
+pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.demo</groupId>
+    <artifactId>JavaCICD</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+</project>
+
+Dockerfile:
+
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+COPY target/JavaCICD-1.0.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
+
+Jenkins file With Maven:
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/yourusername/JavaCICD.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t java-cicd .'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker run -d --name javaapp -p 8080:8080 java-cicd || true'
+            }
+        }
+
+    }
+}
+
+Dockerfile:
+
+FROM openjdk:17
+
+WORKDIR /app
+
+COPY App.java .
+
+RUN javac App.java
+
+CMD ["java", "App"]
+
+Jenkins file Withput Maven:
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/yourusername/JavaApp.git'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                sh 'javac App.java'
+            }
+        }
+
+        stage('Run Application') {
+            steps {
+                sh 'java App'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t java-app .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run --rm java-app'
+            }
+        }
+
+    }
+}
+
+REACT 
+
+function App() {
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>React CI/CD Pipeline</h1>
+      <h2>Jenkins + Docker + GitHub</h2>
+      <p>Pipeline Executed Successfully!</p>
+    </div>
+  );
+}
+
+export default App;
+
+FROM node:18
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+RUN npm run build
+
+RUN npm install -g serve
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "build", "-l", "3000"]
+
+
+pipeline {
+
+    agent any
+
+    triggers {
+        cron('H/5 * * * *')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/react-cicd.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build React App') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t react-cicd .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker run -d --name react-app -p 3000:3000 react-cicd || true'
+            }
+        }
+
+    }
+}
+
+
+HTML:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Pipeline</title>
+</head>
+<body style="text-align:center; margin-top:100px; font-family:Arial;">
+
+    <h1>CI/CD Pipeline Using Jenkins and Docker</h1>
+    <h2>Static HTML Application</h2>
+    <p>Deployment Successful!</p>
+
+</body>
+</html>
+
+
+FROM nginx:alpine
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+pipeline {
+
+    agent any
+
+    triggers {
+        cron('H/5 * * * *')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/html-cicd.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t html-cicd .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker rm -f html-app || true'
+                sh 'docker run -d --name html-app -p 8080:80 html-cicd'
+            }
+        }
+
+    }
+}
+
+Python:
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "<h1>Flask CI/CD Pipeline</h1><h2>Jenkins + Docker + GitHub</h2><p>Deployment Successful!</p>"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+
+
+pipeline {
+
+    agent any
+
+    triggers {
+        cron('H/5 * * * *')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/Flask-CICD.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'pip3 install -r requirements.txt'
+            }
+        }
+
+        stage('Run Flask App') {
+            steps {
+                sh 'python3 app.py &'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t flask-cicd .'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                sh 'docker rm -f flask-app || true'
+                sh 'docker run -d --name flask-app -p 5000:5000 flask-cicd'
+            }
+        }
+
+    }
+}
+
+
+
