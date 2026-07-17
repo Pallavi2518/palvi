@@ -12,3 +12,6 @@ install aytu securit tegde login agtilla
 evaag maven-app anta repo create aagidhe noodu adhu use maadu 
 jenkins heg login agodu
 security tag idini
+
+
+just open maadu aagutte
