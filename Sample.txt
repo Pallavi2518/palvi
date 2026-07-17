@@ -1,10 +1,1 @@
-Add dependency for maven
-jenkins settings
-open tools scroll up 
-add maven installation 
-enter name as maven 
-apply and save
-im asking in spring initializer
-
-
-spring web
+java file dockerfile ella elli add madbeku zip folder alli
