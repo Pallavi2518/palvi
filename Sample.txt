@@ -5,3 +5,4 @@ jenkins alli item create madbekadre last alli
 Script Path adikke
 Demoapp/Jenkinsfile 
 haakuanta 
+jenkins illa
