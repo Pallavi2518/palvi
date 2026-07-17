@@ -1,0 +1,198 @@
+Jenkinsfile
+
+JAVA Jenkinsfile
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Compile Java') {
+            steps {
+                sh 'javac Hello.java'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t java-app .'
+            }
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                sh 'docker run --rm java-app'
+            }
+        }
+
+    }
+}
+
+
+
+Maven Java Jenkins
+
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven'
+    }
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Maven Project') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t maven-app .'
+            }
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                sh 'docker run --rm maven-app'
+            }
+        }
+
+    }
+}
+Python
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t python-app .'
+            }
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                sh 'docker run --rm python-app'
+            }
+        }
+
+    }
+}
+
+React 
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build React Project') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t react-app .'
+            }
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                sh 'docker run -d -p 3000:80 react-app'
+            }
+        }
+
+    }
+}
+
+
+Python Flask
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t flask-app .'
+            }
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                sh 'docker run -d -p 5000:5000 flask-app'
+            }
+        }
+
+    }
+}
+
+          
+HTML
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t html-app .'
+            }
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                sh 'docker run -d -p 8080:80 html-app'
+            }
+        }
+
+    }
+}
+

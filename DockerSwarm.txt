@@ -1,0 +1,144 @@
+=================================================================================
+                 DOCKER SWARM USING VAGRANT (3 VMs)
+=================================================================================
+
+STEP 1 : Install VirtualBox
+---------------------------
+sudo apt update
+sudo apt install -y virtualbox
+vboxmanage --version
+
+STEP 2 : Install Vagrant
+------------------------
+(Add HashiCorp GPG Key)
+(Add HashiCorp Repository)
+
+sudo apt update
+sudo apt install -y vagrant
+
+STEP 3 : Create Project Directory
+---------------------------------
+mkdir docker-swarm-vms
+cd docker-swarm-vms
+
+STEP 4 : Create Vagrantfile
+---------------------------
+vagrant init
+nano Vagrantfile
+
+STEP 5 : Start Virtual Machines
+-------------------------------
+vagrant up
+
+Open 3 terminals
+
+Manager VM:
+vagrant ssh manager-vm
+
+Worker 1:
+vagrant ssh worker1-vm
+
+Worker 2:
+vagrant ssh worker2-vm
+
+STEP 6 : Install Docker (Run on ALL VMs)
+----------------------------------------
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+logout
+
+Login again:
+vagrant ssh worker1-vm
+vagrant ssh worker2-vm
+
+Verify:
+docker --version
+
+STEP 7 : Initialize Docker Swarm (Manager VM)
+---------------------------------------------
+docker swarm init --advertise-addr 192.168.56.10
+
+Copy the join token.
+
+STEP 8 : Join Worker Nodes
+--------------------------
+Paste the copied join command in:
+
+worker1-vm
+worker2-vm
+
+Example:
+docker swarm join --token <TOKEN> 192.168.56.10:2377
+
+STEP 9 : Verify Nodes
+---------------------
+docker node ls
+
+STEP 10 : Create Swarm Service
+------------------------------
+Syntax:
+docker service create --name <service-name> --replicas <count> -p <host-port>:<container-port> <image>
+\]]
+Example:
+docker service create --name web --replicas 3 -p 8080:80 nginx
+
+STEP 11 : Verify Service
+------------------------
+Open Browser:
+
+http://192.168.56.10:8080
+
+STEP 12 : Stop & Destroy VMs
+----------------------------
+vagrant halt
+vagrant destroy
+
+=================================================================================
+                               WORKFLOW
+=================================================================================
+
+Install VirtualBox
+        │
+        ▼
+Install Vagrant
+        │
+        ▼
+Create Directory
+        │
+        ▼
+Create Vagrantfile
+        │
+        ▼
+vagrant up
+        │
+        ▼
+Login to Manager & Worker VMs
+        │
+        ▼
+Install Docker on All VMs
+        │
+        ▼
+Initialize Docker Swarm
+        │
+        ▼
+Join Worker Nodes
+        │
+        ▼
+Verify Nodes
+        │
+        ▼
+Create Docker Service
+        │
+        ▼
+Verify in Browser
+        │
+        ▼
+vagrant halt
+        │
+        ▼
+vagrant destroy
+
+=================================================================================

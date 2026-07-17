@@ -1,0 +1,123 @@
+=================================================================================
+              CI/CD PIPELINE USING GIT, JENKINS, DOCKER & DOCKER HUB
+=================================================================================
+
+STEP 1 : Create Project Folder
+--------------------------------
+mkdir java-app
+cd java-app
+
+Create files:
+--------------
+nano App.java
+nano Dockerfile
+nano Jenkinsfile
+
+
+STEP 2 : Push Project to GitHub
+--------------------------------
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/<username>/<repository>.git
+git push -u origin main
+
+
+STEP 3 : Enable Jenkins
+------------------------
+sudo systemctl status jenkins
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+
+
+STEP 4 : Configure Jenkins
+---------------------------
+1. Open Jenkins (http://localhost:8080)
+2. Create New Item → Pipeline
+3. Pipeline Script from SCM
+4. SCM → Git
+5. Repository URL → GitHub Repository
+6. Branch → */main
+7. Script Path → Jenkinsfile
+8. Save
+9. Build Now
+
+
+STEP 5 : Install & Enable Docker
+---------------------------------
+sudo apt install -y docker.io
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker $USER
+
+
+STEP 6 : Build Docker Image
+----------------------------
+docker build -t java-app .
+
+
+STEP 7 : Login to Docker Hub
+-----------------------------
+docker login
+
+
+STEP 8 : Tag Docker Image
+--------------------------
+docker tag java-app <dockerhub-username>/java-app:latest
+
+
+STEP 9 : Push Docker Image
+---------------------------
+docker push <dockerhub-username>/java-app:latest
+
+
+STEP 10 : Run Docker Image
+---------------------------
+docker run --rm <dockerhub-username>/java-app:latest
+
+OR (Web Application)
+
+docker run -d -p 8080:8080 <dockerhub-username>/java-app:latest
+
+
+=================================================================================
+WORKFLOW
+=================================================================================
+
+Developer
+    │
+    ▼
+Create Java Project
+    │
+    ▼
+Git Repository
+    │
+git add
+git commit
+git push
+    │
+    ▼
+GitHub Repository
+    │
+    ▼
+Jenkins Pipeline
+    │
+    ├── Clone Repository
+    ├── Compile Java
+    ├── Build Docker Image
+    └── Execute Jenkinsfile
+    │
+    ▼
+Docker
+    │
+    ├── Build Image
+    ├── Tag Image
+    └── Push Image
+    │
+    ▼
+Docker Hub
+    │
+    ▼
+Run Docker Image
+=================================================================================
