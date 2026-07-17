@@ -62,3 +62,5 @@ minikube start
 docker build -t simple-web:v1 .
 kubectl create deployment simple-web-deploy --image=simple-web: v1
 kubectle expose deployment simple-web --type=NodePort --port=80
+
+sudo nano /var/lib/jenkins/config.xml
