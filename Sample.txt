@@ -1,23 +1,13 @@
-/home/mca/Desktop/Demoapp. illena
-
-
-hu neen push maadu elli nodi heltini
-git commit -m "first commit"
-Author identity unknown
-
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "email"  //enter ur emmail
-  git config --global user.name "Pallavi2518"
-
-to set your account's default identity.
-Omit --global to set the identity only in this repository.
-
-fatal: unable to auto-detect email address (got 'mca@administrator.(none)')
 
 
 
  git config --global user.email "email"  //enter ur emmail
   git config --global user.name "Pallavi2518"
+
+
+
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/Pallavi2518/dev.git
+git push -u origin master
