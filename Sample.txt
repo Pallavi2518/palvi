@@ -3,5 +3,5 @@ push aytu docker and jenkins file
 
 jenkins alli item create madbekadre last alli 
 Script Path adikke
-Demoapp/jenkinsfile 
+Demoapp/Jenkinsfile 
 haakuanta 
