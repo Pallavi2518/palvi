@@ -9,10 +9,15 @@ Author identity unknown
 
 Run
 
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
+  git config --global user.email "email"  //enter ur emmail
+  git config --global user.name "Pallavi2518"
 
 to set your account's default identity.
 Omit --global to set the identity only in this repository.
 
 fatal: unable to auto-detect email address (got 'mca@administrator.(none)')
+
+
+
+ git config --global user.email "email"  //enter ur emmail
+  git config --global user.name "Pallavi2518"
