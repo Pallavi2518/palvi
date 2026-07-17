@@ -1,6 +1,8 @@
 sudo apt update
 sudo apt install maven -y
 
+then 
 
+sudo systemctl restart jenkins
 
 in terminal
