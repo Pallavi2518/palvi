@@ -1,1 +1,6 @@
 Add dependency for maven
+jenkins settings
+open tools scroll up 
+add maven installation 
+enter name as maven 
+apply and save
