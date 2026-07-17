@@ -4,3 +4,4 @@ open tools scroll up
 add maven installation 
 enter name as maven 
 apply and save
+im asking in spring initializer
