@@ -1,8 +1,152 @@
-sudo apt update
-sudo apt install maven -y
+Started by user Rithik Kumar
+Obtained Jenkinsfile from git 
+https://github.com/Pallavi2518/maven-app.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/d12
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/d12/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Pallavi2518/maven-app.git # timeout=10
+Fetching upstream changes from https://github.com/Pallavi2518/maven-app.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/Pallavi2518/maven-app.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 73a902d80e9381e9e96f0fe8befb67e2ba4c02c3 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 73a902d80e9381e9e96f0fe8befb67e2ba4c02c3 # timeout=10
+Commit message: "Update Jenkinsfile"
+ > git rev-list --no-walk 73a902d80e9381e9e96f0fe8befb67e2ba4c02c3 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone)
+[Pipeline] git
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/d12/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Pallavi2518/maven-app.git # timeout=10
+Fetching upstream changes from https://github.com/Pallavi2518/maven-app.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.43.0'
+ > git fetch --tags --force --progress -- https://github.com/Pallavi2518/maven-app.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 73a902d80e9381e9e96f0fe8befb67e2ba4c02c3 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 73a902d80e9381e9e96f0fe8befb67e2ba4c02c3 # timeout=10
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master 73a902d80e9381e9e96f0fe8befb67e2ba4c02c3 # timeout=10
+Commit message: "Update Jenkinsfile"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
++ mvn clean package
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m----------------------< [0;36mcom.example:inter-maven[0;1m >-----------------------[m
+[[1;34mINFO[m] [1mBuilding  0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.5.0:clean[m [1m(default-clean)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] Deleting /var/lib/jenkins/workspace/d12/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.5.0:resources[m [1m(default-resources)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 0 resource from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.15.0:compile[m [1m(default-compile)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 2 source files with javac [debug parameters release 17] to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.5.0:testResources[m [1m(default-testResources)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] skip non existing resourceDirectory /var/lib/jenkins/workspace/d12/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.15.0:testCompile[m [1m(default-testCompile)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged dependency[m.
+[[1;34mINFO[m] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:3.5.6:test[m [1m(default-test)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[[1;34mINFO[m] 
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m]  T E S T S
+[[1;34mINFO[m] -------------------------------------------------------
+[[1;34mINFO[m] Running com.example.inter_maven.[1mInterMavenApplicationTests[m
+15:57:08.721 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.inter_maven.InterMavenApplicationTests]: InterMavenApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:57:08.765 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.inter_maven.InterMavenApplication for test class com.example.inter_maven.InterMavenApplicationTests
+15:57:08.799 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.inter_maven.InterMavenApplicationTests]: InterMavenApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:57:08.800 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.inter_maven.InterMavenApplication for test class com.example.inter_maven.InterMavenApplicationTests
 
-then 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
 
-sudo systemctl restart jenkins
+ :: Spring Boot ::                (v4.1.0)
 
-in terminal
+2026-07-17T15:57:08.934+05:30  INFO 12789 --- [inter-maven] [           main] c.e.i.InterMavenApplicationTests         : Starting InterMavenApplicationTests using Java 21.0.11 with PID 12789 (started by jenkins in /var/lib/jenkins/workspace/d12)
+2026-07-17T15:57:08.935+05:30  INFO 12789 --- [inter-maven] [           main] c.e.i.InterMavenApplicationTests         : No active profile set, falling back to 1 default profile: "default"
+2026-07-17T15:57:09.312+05:30  INFO 12789 --- [inter-maven] [           main] c.e.i.InterMavenApplicationTests         : Started InterMavenApplicationTests in 0.491 seconds (process running for 0.927)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/var/lib/jenkins/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.10/byte-buddy-agent-1.18.10.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[[1;34mINFO[m] [1;32mTests run: [0;1;32m1[m, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.024 s -- in com.example.inter_maven.[1mInterMavenApplicationTests[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] Results:
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1;32mTests run: 1, Failures: 0, Errors: 0, Skipped: 0[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:3.5.0:jar[m [1m(default-jar)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] Building jar: /var/lib/jenkins/workspace/d12/target/inter-maven-0.0.1-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:4.1.0:repackage[m [1m(repackage)[m @ [36minter-maven[0;1m ---[m
+[[1;34mINFO[m] Replacing main artifact /var/lib/jenkins/workspace/d12/target/inter-maven-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[[1;34mINFO[m] The original artifact has been renamed to /var/lib/jenkins/workspace/d12/target/inter-maven-0.0.1-SNAPSHOT.jar.original
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  2.318 s
+[[1;34mINFO[m] Finished at: 2026-07-17T15:57:09+05:30
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Build)
+[Pipeline] sh
++ docker build -t maven-external .
+ERROR: permission denied while trying to connect to the docker API at unix:///var/run/docker.sock
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Run)
+Stage "Docker Run" skipped due to earlier failure(s)
+[Pipeline] getContext
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 1
+Finished: FAILURE
