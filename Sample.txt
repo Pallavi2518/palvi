@@ -7,3 +7,6 @@ Demoapp/Jenkinsfile
 haakuanta 
 jenkins illa
 install aytu securit tegde login agtilla
+
+
+evaag maven-app anta repo create aagidhe noodu adhu use maadu 
