@@ -1,11 +1,1 @@
-hu
-whoami
-mca
-mca@administrator:~$ groups jenkins
-jenkins : jenkins docker
-mca@administrator:~$ ls -l /var/run/docker.sock
-srw-rw---- 1 root docker 0 Jul 17  2026 /var/run/docker.sock
-mca@administrator:~$ docker ps
-CONTAINER ID   IMAGE            COMMAND               CREATED         STATUS         PORTS                                                   NAMES
-a2d3c17c296e   maven-external   "java -jar app.jar"   5 minutes ago   Up 5 minutes   8081/tcp, 0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp   maven-app
-mca@administrator:~$ 
+build now
