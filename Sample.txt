@@ -1,13 +1,1 @@
-
-
-
- git config --global user.email "email"  //enter ur emmail
-  git config --global user.name "Pallavi2518"
-
-
-
-git init
-git add .
-git commit -m "first commit"
-git remote add origin https://github.com/Pallavi2518/dev.git
-git push -u origin master
+push aytu docker and jenkins file
