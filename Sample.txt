@@ -6,3 +6,4 @@ Script Path adikke
 Demoapp/Jenkinsfile 
 haakuanta 
 jenkins illa
+install aytu securit tegde login agtilla
